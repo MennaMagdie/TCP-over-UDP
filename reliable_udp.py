@@ -155,6 +155,7 @@ class ReliableUDP:
                 # Handle FIN-ACK
                 elif flags == "FIN" and ack_packet["flags"] == "FINACK":
                     self.debug_print(f"FINACK received")
+                    self.send_ack(ack_packet["seq"]) # ACK from the client (to confirm clean close)
                     self.connected = False
                     return True
                     
